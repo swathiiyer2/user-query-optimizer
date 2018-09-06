@@ -1,16 +1,8 @@
-import codecs
-import os
-import re
-
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name='user-query-optimizer',
-<<<<<<< HEAD
     version='0.1.2',
-=======
-    version='0.1.0',
->>>>>>> ordering
     author='Swathi Iyer',
     author_email='swathii@stanford.edu',
     packages=['user_query_optimizer'],

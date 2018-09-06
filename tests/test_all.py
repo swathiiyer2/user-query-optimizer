@@ -1,21 +1,9 @@
-import re
-from collections import defaultdict
-from collections import OrderedDict
-import sys
-sys.path.append('../user_query_optimizer')
-import optimizer
-import sqlparse
-
 def test_all(queries, presto_op):
     correct_ops = {
         'test-query-1.txt': {0: ['filter on a partitioned column',
                                  "Filtering on ordered columns can improve performance. Here are some that you aren't filtering on: os, app_name, submission_date_s3"]},
         'test-query-2.txt': {1: ['select columns explicitly'],
-                             3: ["Filtering on ordered columns can improve performance. Here are some that you aren't filtering on: submission_date_s3"],
-                             10: ['filter on a partitioned column'],
-                             17: ['filter on a partitioned column'],
-                             35: ['filter on a partitioned column'],
-                             22: ['filter on a partitioned column']},
+                             3: ["Filtering on ordered columns can improve performance. Here are some that you aren't filtering on: submission_date_s3"]},
         'test-query-3.txt': {0: ['use approximation - approx_distinct',
                                  'select columns explicitly',
                                  'filter on a partitioned column',
