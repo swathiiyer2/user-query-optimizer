@@ -1,17 +1,6 @@
-<<<<<<< HEAD
-import re
-from collections import defaultdict
-from collections import OrderedDict
-import sys
-sys.path.append('../user_query_optimizer')
-import optimizer
-import sqlparse
-
-=======
 import sqlparse
 
 
->>>>>>> flake8 fixes test_*.py
 def test_ordering(queries, presto_op):
     # dictionary from test-query-file -> list of line numbers in that query with an approx optimization
     correct_ops = {
@@ -30,11 +19,7 @@ def test_ordering(queries, presto_op):
     for ind, query in enumerate(queries):
         # Parse query and extract ctes
         # Strip comments to help sqlparse correctly extract the identifier list
-<<<<<<< HEAD
-        formatted_query = str(sqlparse.format(query, strip_comments = True)).strip()
-=======
         formatted_query = str(sqlparse.format(query, strip_comments=True)).strip()
->>>>>>> flake8 fixes test_*.py
         parsed_queries = presto_op._parse_query(formatted_query)
 
         presto_op._checkOrdering(parsed_queries)

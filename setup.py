@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='user-query-optimizer',
-    version='0.1.2',
+    version='0.1.3',
     author='Swathi Iyer',
     author_email='swathii@stanford.edu',
     packages=['user_query_optimizer'],

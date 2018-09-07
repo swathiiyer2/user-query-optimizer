@@ -3,6 +3,7 @@ import column_selection
 import partitions
 import nested_subqueries
 import parquet_ordering
+import filtering_transforms
 from optimizer import Optimizer
 from collections import defaultdict
 
