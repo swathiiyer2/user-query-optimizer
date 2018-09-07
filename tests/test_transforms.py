@@ -1,10 +1,5 @@
-import re
-from collections import defaultdict
-from collections import OrderedDict
-import sys
-sys.path.append('../user_query_optimizer')
-import optimizer
 import sqlparse
+
 
 def test_filtering_transforms(queries, presto_op):
     # dictionary from test-query-file -> list of line numbers in that query with an approx optimization
@@ -16,7 +11,7 @@ def test_filtering_transforms(queries, presto_op):
     for ind, query in enumerate(queries):
         # Parse query and extract ctes
         # Strip comments to help sqlparse correctly extract the identifier list
-        formatted_query = str(sqlparse.format(query, strip_comments = True)).strip()
+        formatted_query = str(sqlparse.format(query, strip_comments=True)).strip()
         parsed_queries = presto_op._parse_query(formatted_query)
 
         presto_op._checkFiltering(parsed_queries)

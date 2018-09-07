@@ -1,16 +1,10 @@
-import re
-import types
-import sqlparse
-from collections import defaultdict
-from collections import OrderedDict
-from clickhouse_cli.ui.parseutils.ctes import extract_ctes
-from clickhouse_cli.ui.parseutils.tables import extract_tables
-from sqlparse.sql import IdentifierList, Identifier, Function, Where, Comparison
-from sqlparse.tokens import Keyword, DML, Newline, CTE, Wildcard
+from sqlparse.sql import Function, Where
 
 
 # Optimization # 6
 def checkFiltering(optimizations, schema, parsed_queries, *db_params):
+    msg = "Transformations on partitioned columns are more computationally expensive than direct comparisons." + \
+            " Try and move the transformation to the other side of the comparison on the following column: "
     for stmt_list in parsed_queries:
         for stmt in stmt_list:
             seen_stmt = ""
@@ -23,6 +17,6 @@ def checkFiltering(optimizations, schema, parsed_queries, *db_params):
                             for param in params:
                                 if param in schema["partitions"]:
                                     lineno = seen_stmt.count("\n")
-                                    optimizations[stmt].append((lineno, "Transformations on partitioned columns are more computationally expensive than direct comparisons. Try and move the transformation to the other side of the comparison on the following column: " + param))
+                                    optimizations[stmt].append((lineno, msg + param))
 
                 seen_stmt += str(token)

@@ -7,6 +7,7 @@ import filtering_transforms
 from optimizer import Optimizer
 from collections import defaultdict
 
+
 class SparkOptimizer(Optimizer):
     def __init__(self, schema):
         Optimizer.__init__(self, schema)
